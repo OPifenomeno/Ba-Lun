@@ -4,10 +4,11 @@ import { OpenAI } from 'openai';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import fs from 'fs'
+import os from 'os'
 dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const historyPath = path.join(__dirname,'chat_history2.json')
+const historyPath = path.join(os.tmpdir,'chat_history.json')
 const app = express();
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.json())
@@ -21,6 +22,7 @@ if(fs.existsSync(historyPath)){
 }
 
 app.get('/',(req,res)=>{
+    
     if(localStorage.getItem(vivo)){
         
     res.sendFile(path.join(__dirname,'public','index.html'))
@@ -32,7 +34,7 @@ app.get('/',(req,res)=>{
 process.on('exit',saveHistory)
 process.on('SIGINT',()=>{
     saveHistory();
-    process.exit
+    process.exit()
 })
 function saveHistory(){
     let date = new Date()
@@ -59,16 +61,15 @@ app.post('/getResponse',async (req,res)  =>{
     })
     const reply = response.choices[0].message.content
     hisMessages.push({role:"assistant",content:reply})
-            async()=>{
-        console.log(hisMessages)
-    }
+    
+    console.log(hisMessages)
+    
     
     res.json({result:reply})
-    
 }catch(errao){
-        console.log("cabo os token se pa")
-        res.json({result:"Zzz... (Seu balãozinho desmaiou por usar muito gás hélio, volte amanhã)"})    
-    }
+    console.log("cabo os token se pa")
+    res.json({result:"Zzz... (Seu balãozinho desmaiou por usar muito gás hélio, volte amanhã)"})
+}
 })
 
-app.listen(process.env.PORT || 10000,()=>console.log(`http://localhost:3000`))
+app.listen(process.env.PORT || 3000,()=>console.log(`http://localhost:3000`))
