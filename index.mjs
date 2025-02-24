@@ -7,7 +7,7 @@ import fs from 'fs'
 dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const historyPath = path.join(__dirname,'chat_history.json')
+const historyPath = path.join(__dirname,'chat_history1.json')
 const app = express();
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.json())
