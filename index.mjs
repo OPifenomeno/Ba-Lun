@@ -62,4 +62,4 @@ app.post('/getResponse',async (req,res)  =>{
     res.json({result:reply})
 })
 
-app.listen(process.env.PORT || 3000,()=>console.log(`http://localhost:3000`))
+app.listen(process.env.PORT || 10000,()=>console.log(`http://localhost:3000`))
