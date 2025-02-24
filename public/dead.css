@@ -1,0 +1,50 @@
+
+@keyframes aparecendo{
+    from{top:120%}
+    to{top:50%}
+}
+
+body,html{
+    background-color: rgb(80, 80, 80);
+    margin:0px;
+    width: 100vw;
+    height: 100vh;
+    box-shadow: 0px 0px 1200px 300px inset black;
+    overflow-y: hidden;
+}
+#prize{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #6767ff00;
+    width: 40%;
+    height: 30%px;
+    display: inline-block;
+    animation:aparecendo 3s ease-out
+}
+
+#prize::after{
+    position: relative;
+    display: block;
+    width: fit-content;
+    background-color: rgba(255, 255, 255, 0.199);
+    content: "-🎈";
+    left: 70%;
+    bottom:30px;
+    border: 0.4vw rgb(0, 110, 255) solid;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5vw;
+
+}
+#prize img{
+    filter: brightness(50%);
+    width: 100%;
+    object-fit: 100%;
+    transition: 0.5s;
+    cursor:help
+}
+#prize img:hover{
+    transform: scale(1.2);
+}
