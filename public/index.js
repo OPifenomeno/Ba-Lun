@@ -47,13 +47,9 @@ document.addEventListener('mousemove',seguirMouse)
 document.getElementById('btnEnviar').addEventListener('mousedown',sendMessage)
 document.addEventListener('DOMContentLoaded',async ()=>{
         const now = new Date()
-        if(localStorage.getItem('vivo')==null){
-            localStorage.setItem('vivo',true)
-                                }
-        if(localStorage.getItem('vivo') == false){
+        if(localStorage.getItem(vivo) == false){
             window.location.href = "/adeus.html"
         }
-        
 
         let message = "Emilly chegou"
         if(localStorage.getItem("ultimaVez") != undefined){
@@ -69,6 +65,11 @@ document.addEventListener('DOMContentLoaded',async ()=>{
             body:JSON.stringify({role:"system",message:message})
         })
         const data = await response.json()
+        if (data.result == "Zzz... (Seu balãozinho desmaiou por usar muito gás hélio, volte amanhã)"){
+            olho.style.height = '0px'
+        }else{
+            
+        }
         chat.innerText = data.result
 })
 
