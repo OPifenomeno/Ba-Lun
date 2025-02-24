@@ -47,8 +47,12 @@ document.addEventListener('mousemove',seguirMouse)
 document.getElementById('btnEnviar').addEventListener('mousedown',sendMessage)
 document.addEventListener('DOMContentLoaded',async ()=>{
         const now = new Date()
-        let message = ''
-        if(localStorage.getItem("ultimaVez") != ''){
+        if(localStorage.getItem(vivo) == false){
+            window.location.href = "/adeus.html"
+        }
+
+        let message = "Emilly chegou"
+        if(localStorage.getItem("ultimaVez") != undefined){
              message = "Emilly chega pela primeira vez: " +now.toUTCString
         }else{
              message = `Emilly retornou. Ultima vez: ${localStorage.getItem('ultimaVez')} || Agora: ${now.toUTCString}`
@@ -86,11 +90,11 @@ function seguirMouse(event) {
             const deltaX = cursorX - centerX;
             const deltaY = cursorY - centerY;
             const angle = Math.atan2(deltaY, deltaX);
-            const maxMove = 20; // Máximo de deslocamento dos olhos
+            const maxMove = 20; 
             
             olho.style.transform = `translate(${Math.cos(angle) * maxMove}px, ${Math.sin(angle) * maxMove}px)`;
         } else {
-            // Se o mouse estiver dentro do retângulo, os olhos voltam à posição original
+      
             olho.style.transition = '0.5s'
             olho.style.transform = `translate(0px, 0px)`;
 
@@ -128,7 +132,7 @@ function aumentarBalao(){
                 document.getElementById('chat').style.transition = '6s'
                 document.getElementById('chat').style.left = '-100%'
                 setTimeout(function() {
-                    window.location.href = 'adeus.html'
+                    window.location.href = '/adeus.html'
                 }, 8000);
         }, 2000);
 
