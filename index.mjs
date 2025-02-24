@@ -59,7 +59,12 @@ app.post('/getResponse',async (req,res)  =>{
     })
     const reply = response.choices[0].message.content
     hisMessages.push({role:"assistant",content:reply})
+            async()=>{
+        console.log(hisMessages)
+    }
+    
     res.json({result:reply})
+    
 }catch(errao){console.error('deu erro aqui o credenciais')}
 })
 
