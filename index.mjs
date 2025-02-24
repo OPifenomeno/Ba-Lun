@@ -47,6 +47,7 @@ app.post('/getResponse',async (req,res)  =>{
     }
     else{hisMessages.push({role:req.body.role,content:req.body.message})}
     }catch(erro){console.log('DEU ERRO AQUI LINHA')}
+    try{
     const client = new OpenAI({baseURL:process.env.ENDPOINT ,apiKey:process.env.API_KEY})
 
     const response = await client.chat.completions.create({
@@ -56,10 +57,10 @@ app.post('/getResponse',async (req,res)  =>{
         max_tokens:1000,
         model:"gpt-4o"
     })
-
     const reply = response.choices[0].message.content
     hisMessages.push({role:"assistant",content:reply})
     res.json({result:reply})
+}catch(errao){console.error('deu erro aqui o credenciais')}
 })
 
 app.listen(process.env.PORT || 10000,()=>console.log(`http://localhost:3000`))
