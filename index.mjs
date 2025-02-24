@@ -7,7 +7,7 @@ import fs from 'fs'
 dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const historyPath = path.join(__dirname,'chat_history1.json')
+const historyPath = path.join(__dirname,'chat_history2.json')
 const app = express();
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.json())
@@ -65,7 +65,10 @@ app.post('/getResponse',async (req,res)  =>{
     
     res.json({result:reply})
     
-}catch(errao){console.error('deu erro aqui o credenciais')}
+}catch(errao){
+        console.log("cabo os token se pa")
+        res.json({result:"Zzz... (Seu balãozinho desmaiou por usar muito gás hélio, volte amanhã)"})    
+    }
 })
 
 app.listen(process.env.PORT || 10000,()=>console.log(`http://localhost:3000`))
